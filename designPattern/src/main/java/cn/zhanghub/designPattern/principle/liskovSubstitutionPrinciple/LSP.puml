@@ -1,0 +1,36 @@
+@startuml
+title 脊椎动物不是鸟【里氏替换原则】
+'//鸟类
+class Bird
+Bird : -flySpeed;
+Bird : + setSpeed(double speed)
+Bird : + getFlyTime(double distance)
+note right of Bird: 错误案例
+'//燕子类
+Bird<|--Swallow
+'//几维鸟类
+Bird<|--BrownKiwi
+'    方法重新
+BrownKiwi : +setSpeed(double speed)
+class animal
+note right of animal: 正确案例
+animal : runSpeed
+
+'//鸟类
+animal<|--Bird1
+Bird1 : -flySpeed;
+Bird1 : + setSpeed(double speed)
+Bird1 : + getFlyTime(double distance)
+
+'//燕子类
+Bird1<|--Swallow1
+'//几维鸟类
+Bird1<|--BrownKiwi1
+'    方法重新
+BrownKiwi1 : +setSpeed(double speed)
+
+
+
+
+
+@enduml

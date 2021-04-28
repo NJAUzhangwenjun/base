@@ -1,0 +1,7 @@
+@startuml
+class cn.zhanghub.designPattern.singleton.Singleton {
+- {static} Singleton instance
+- <<Create>> Singleton()
++ {static} Singleton getInstance()
+}
+@enduml

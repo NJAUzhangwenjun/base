@@ -1,0 +1,412 @@
+@startuml
+abstract class cn.wjhub.netty.chatroom.server.service.AbstractUserServiceFactory {
+- {static} UserService userService
++ {static} UserService getUserService()
+}
+class cn.wjhub.netty.rpc.client.RpcClient {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.rpc.message.RpcResponseMessage {
+- Object returnValue
+- Exception exceptionValue
++ int getMessageType()
+}
+class cn.wjhub.netty.rpc.client.RpcClientManager {
++ {static} Map<Integer,Promise<Object>> PROMISE_MAP
+- {static} Channel channel
+- {static} Channel getChannel()
+- {static} void initChannel()
++ {static} T getProxyService(Class<T>)
+}
+class cn.wjhub.nio.Server {
++ {static} void main(String[])
+- {static} void server()
+- {static} void handle(SocketChannel)
+}
+class cn.wjhub.nio.SelectorServer {
++ {static} void main(String[])
+- {static} void server()
+- {static} void handle(SocketChannel,ByteBuffer)
+}
+class cn.wjhub.netty.rpc.protocol.MessageCodec {
++ void encode(ChannelHandlerContext,Message,ByteBuf)
+# void decode(ChannelHandlerContext,ByteBuf,List<Object>)
+}
+class cn.wjhub.netty.chatroom.message.PingMessage {
++ int getMessageType()
+}
+class cn.wjhub.netty.compoent.byteBuf.MyBuffer {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.rpc.handler.RpcResponseMessageHandler {
+# void channelRead0(ChannelHandlerContext,RpcResponseMessage)
+}
+class cn.wjhub.netty.chatroom.message.GroupQuitRequestMessage {
+- String groupName
+- String username
++ int getMessageType()
+}
+class cn.wjhub.netty.rpc.service.HelloServiceImpl {
++ String say(String)
+}
+class cn.wjhub.netty.chatroom.server.service.UserServiceMemoryImpl {
+- Map<String,String> allUserMap
++ boolean login(String,String)
+}
+class cn.wjhub.nio.Client {
++ {static} void main(String[])
+- {static} void sendMessage(String)
+}
+class cn.wjhub.netty.chatroom.server.handler.ChatRequestMessageHandler {
+# void channelRead0(ChannelHandlerContext,ChatRequestMessage)
+}
+class cn.wjhub.netty.chatroom.server.ChatServer {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.chatroom.message.LoginRequestMessage {
+- String username
+- String password
+- {static} CountDownLatch WAITING_LOGIN
+- {static} AtomicBoolean Logged
++ int getMessageType()
+}
+class cn.wjhub.netty.chatroom.server.handler.GroupChatRequestMessageHandler {
+# void channelRead0(ChannelHandlerContext,GroupChatRequestMessage)
+}
+class cn.wjhub.netty.chatroom.message.PongMessage {
++ int getMessageType()
+}
+class cn.wjhub.nio.MultiThreadServer {
++ {static} void main(String[])
+}
+class cn.wjhub.nio.MultiThreadServer.Worker {
+- Thread thread
+- Selector worker
+- String name
+- boolean start
+- ConcurrentLinkedQueue<Runnable> queue
++ void register(SocketChannel)
++ void run()
+}
+class cn.wjhub.netty.rpc.service.TestRPCClient {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.chatroom.message.GroupCreateRequestMessage {
+- String groupName
+- Set<String> members
++ int getMessageType()
+}
+class cn.wjhub.netty.chatroom.server.handler.GroupMembersRequestMessageHandler {
+# void channelRead0(ChannelHandlerContext,GroupMembersRequestMessage)
+}
+interface cn.wjhub.netty.rpc.protocol.Serializer {
+~ T deserialize(Class<T>,byte[])
+~ byte[] serialize(T)
+}
+class cn.wjhub.netty.rpc.protocol.Serializer.ClassCodec {
++ Class<?> deserialize(JsonElement,Type,JsonDeserializationContext)
++ JsonElement serialize(Class<?>,Type,JsonSerializationContext)
+}
+class cn.wjhub.netty.chatroom.message.GroupChatResponseMessage {
+- String from
+- String content
++ int getMessageType()
+}
+class cn.wjhub.netty.chatroom.server.handler.LoginRequestMessageHandler {
+# void channelRead0(ChannelHandlerContext,LoginRequestMessage)
+}
+class cn.wjhub.netty.chatroom.server.handler.GroupCreateRequestMessageHandler {
+# void channelRead0(ChannelHandlerContext,GroupCreateRequestMessage)
+}
+class cn.wjhub.netty.chatroom.message.GroupJoinRequestMessage {
+- String groupName
+- String username
++ int getMessageType()
+}
+class cn.wjhub.netty.chatroom.message.GroupMembersResponseMessage {
+- Set<String> members
++ int getMessageType()
+}
+abstract class cn.wjhub.netty.rpc.protocol.SequenceIdGenerator {
+- {static} AtomicInteger ID
++ {static} int nextId()
+}
+class cn.wjhub.netty.compoent.nettyProtocolEncodeDecode.MyHttpServer {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.rpc.handler.RpcRequestMessageHandler {
+# void channelRead0(ChannelHandlerContext,RpcRequestMessage)
+}
+class cn.wjhub.netty.compoent.futurePromise.JDKFuture {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.compoent.byteBuf.Client {
++ {static} void main(String[])
+- {static} ByteBuf send(int)
+}
+class cn.wjhub.netty.chatroom.message.ChatResponseMessage {
+- String from
+- String content
++ int getMessageType()
+}
+class cn.wjhub.netty.rpc.protocol.MessageCodecSharable {
++ void encode(ChannelHandlerContext,Message,List<Object>)
+# void decode(ChannelHandlerContext,ByteBuf,List<Object>)
+}
+class cn.wjhub.netty.hello.HelloServer {
++ {static} void main(String[])
+}
+abstract class cn.wjhub.netty.rpc.config.Config {
+~ {static} Properties properties
++ {static} int getServerPort()
++ {static} Serializer.Algorithm getSerializerAlgorithm()
+}
+class cn.wjhub.netty.compoent.EventLoop.MyEventLoop {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.chatroom.message.GroupCreateResponseMessage {
++ int getMessageType()
+}
+class cn.wjhub.netty.chatroom.client.handler.ClientMessageHandler {
+- {static} CountDownLatch WAITING_LOGIN
+- {static} AtomicBoolean Logged
++ {static} void receiveInstructionsAndSendMessages(ChannelHandlerContext)
+- {static} void printCommandPromptMenu()
+- {static} Message getMessage(String,ChannelHandlerContext,String[])
++ {static} void processingResponseMessage(ChannelHandlerContext,Object)
+}
+class cn.wjhub.netty.chatroom.client.ChatClient {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.NettySourceCodeAnalysis.NettyServer {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.compoent.EventLoop.MyEventLoopServer {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.chatroom.message.GroupMembersRequestMessage {
+- String groupName
++ int getMessageType()
+}
+interface cn.wjhub.netty.rpc.service.HelloService {
+~ String say(String)
+}
+class cn.wjhub.netty.chatroom.message.LoginResponseMessage {
++ int getMessageType()
+}
+class cn.wjhub.netty.chatroom.protocol.MessageCodecSharable {
+# void encode(ChannelHandlerContext,Message,List<Object>)
+# void decode(ChannelHandlerContext,ByteBuf,List<Object>)
+}
+interface cn.wjhub.netty.chatroom.server.service.UserService {
+~ boolean login(String,String)
+}
+class cn.wjhub.netty.rpc.message.RpcRequestMessage {
+- String interfaceName
+- String methodName
+- Class<?> returnType
+- Class[] parameterTypes
+- Object[] parameterValue
++ int getMessageType()
+}
+interface cn.wjhub.netty.chatroom.server.session.GroupSession {
+~ Group createGroup(String,Set<String>)
+~ Group joinMember(String,String)
+~ Group removeMember(String,String)
+~ Group removeGroup(String)
+~ Set<String> getMembers(String)
+~ List<Channel> getMembersChannel(String)
+}
+class cn.wjhub.netty.chatroom.message.GroupQuitResponseMessage {
++ int getMessageType()
+}
+class cn.wjhub.netty.rpc.server.RpcServer {
++ {static} void main(String[])
+}
+class cn.wjhub.nio.WriteClient {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.chatroom.server.handler.GroupQuitRequestMessageHandler {
+# void channelRead0(ChannelHandlerContext,GroupQuitRequestMessage)
+}
+class cn.wjhub.netty.chatroom.protocol.MessageCodec {
++ void encode(ChannelHandlerContext,Message,ByteBuf)
+# void decode(ChannelHandlerContext,ByteBuf,List<Object>)
+}
+abstract class cn.wjhub.netty.chatroom.server.session.SessionFactory {
+- {static} Session session
++ {static} Session getSession()
+}
+class cn.wjhub.netty.chatroom.message.GroupChatRequestMessage {
+- String content
+- String groupName
+- String from
++ int getMessageType()
+}
+class cn.wjhub.netty.compoent.protocol.MyMessageCodec {
+# void encode(ChannelHandlerContext,String,ByteBuf)
+# void decode(ChannelHandlerContext,ByteBuf,List<Object>)
++ {static} void main(String[])
+}
+abstract class cn.wjhub.netty.chatroom.server.session.GroupSessionFactory {
+- {static} GroupSession session
++ {static} GroupSession getGroupSession()
+}
+class cn.wjhub.netty.hello.HelloClient {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.chatroom.server.session.SessionMemoryImpl {
+- Map<String,Channel> usernameChannelMap
+- Map<Channel,String> channelUsernameMap
+- Map<Channel,Map<String,Object>> channelAttributesMap
++ void bind(Channel,String)
++ void unbind(Channel)
++ Object getAttribute(Channel,String)
++ void setAttribute(Channel,String,Object)
++ Channel getChannel(String)
++ String toString()
+}
+abstract class cn.wjhub.netty.rpc.message.Message {
+- int sequenceId
+- int messageType
++ {static} int LoginRequestMessage
++ {static} int LoginResponseMessage
++ {static} int ChatRequestMessage
++ {static} int ChatResponseMessage
++ {static} int GroupCreateRequestMessage
++ {static} int GroupCreateResponseMessage
++ {static} int GroupJoinRequestMessage
++ {static} int GroupJoinResponseMessage
++ {static} int GroupQuitRequestMessage
++ {static} int GroupQuitResponseMessage
++ {static} int GroupChatRequestMessage
++ {static} int GroupChatResponseMessage
++ {static} int GroupMembersRequestMessage
++ {static} int GroupMembersResponseMessage
++ {static} int PingMessage
++ {static} int PongMessage
++ {static} int RPC_MESSAGE_TYPE_REQUEST
++ {static} int RPC_MESSAGE_TYPE_RESPONSE
+- {static} Map<Integer,Class<? extends Message>> messageClasses
++ {static} Class<? extends Message> getMessageClass(int)
++ {abstract}int getMessageType()
+}
+class cn.wjhub.netty.chatroom.server.handler.QuitRequestHandler {
++ void channelInactive(ChannelHandlerContext)
++ void exceptionCaught(ChannelHandlerContext,Throwable)
+}
+class cn.wjhub.netty.chatroom.server.session.GroupSessionMemoryImpl {
+- Map<String,Group> groupMap
++ Group createGroup(String,Set<String>)
++ Group joinMember(String,String)
++ Group removeMember(String,String)
++ Group removeGroup(String)
++ Set<String> getMembers(String)
++ List<Channel> getMembersChannel(String)
+}
+abstract class cn.wjhub.netty.chatroom.message.AbstractResponseMessage {
+- boolean success
+- String reason
+}
+class cn.wjhub.netty.NettySourceCodeAnalysis.NIOServer {
++ {static} void main(String[])
+}
+class cn.wjhub.netty.rpc.service.ServicesFactory {
+~ {static} Properties properties
+~ {static} Map<Class<?>,Object> map
++ {static} T getService(Class<T>)
+}
+class cn.wjhub.netty.chatroom.message.GroupJoinResponseMessage {
++ int getMessageType()
+}
+class cn.wjhub.netty.chatroom.message.ChatRequestMessage {
+- String content
+- String to
+- String from
++ int getMessageType()
+}
+class cn.wjhub.nio.WriteServer {
++ {static} void main(String[])
+}
+class cn.wjhub.utils.ByteBufferUtil {
+- {static} char[] BYTE2CHAR
+- {static} char[] HEXDUMP_TABLE
+- {static} String[] HEXPADDING
+- {static} String[] HEXDUMP_ROWPREFIXES
+- {static} String[] BYTE2HEX
+- {static} String[] BYTEPADDING
++ {static} void debugAll(ByteBuffer)
++ {static} void debugRead(ByteBuffer)
++ {static} void main(String[])
+- {static} void appendPrettyHexDump(StringBuilder,ByteBuffer,int,int)
+- {static} void appendHexDumpRowPrefix(StringBuilder,int,int)
++ {static} short getUnsignedByte(ByteBuffer,int)
+}
+interface cn.wjhub.netty.chatroom.server.session.Session {
+~ void bind(Channel,String)
+~ void unbind(Channel)
+~ Object getAttribute(Channel,String)
+~ void setAttribute(Channel,String,Object)
+~ Channel getChannel(String)
+}
+class cn.wjhub.netty.chatroom.protocol.ProcotolFrameDecoder {
+}
+class cn.wjhub.netty.chatroom.server.session.Group {
+- String name
+- Set<String> members
++ {static} Group EMPTY_GROUP
+}
+class cn.wjhub.netty.rpc.protocol.ProtocolFrameDecoder {
+}
+class cn.wjhub.netty.chatroom.server.handler.GroupJoinRequestMessageMessageHandler {
+# void channelRead0(ChannelHandlerContext,GroupJoinRequestMessage)
+}
+
+
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.rpc.message.RpcResponseMessage
+io.netty.handler.codec.ByteToMessageCodec <|-- cn.wjhub.netty.rpc.protocol.MessageCodec
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.PingMessage
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.rpc.handler.RpcResponseMessageHandler
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.GroupQuitRequestMessage
+cn.wjhub.netty.rpc.service.HelloService <|.. cn.wjhub.netty.rpc.service.HelloServiceImpl
+cn.wjhub.netty.chatroom.server.service.UserService <|.. cn.wjhub.netty.chatroom.server.service.UserServiceMemoryImpl
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.chatroom.server.handler.ChatRequestMessageHandler
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.LoginRequestMessage
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.chatroom.server.handler.GroupChatRequestMessageHandler
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.PongMessage
+cn.wjhub.nio.MultiThreadServer +.. cn.wjhub.nio.MultiThreadServer.Worker
+cn.wjhub.nio.Runnable <|.. cn.wjhub.nio.MultiThreadServer.Worker
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.GroupCreateRequestMessage
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.chatroom.server.handler.GroupMembersRequestMessageHandler
+cn.wjhub.netty.rpc.protocol.Serializer +.. cn.wjhub.netty.rpc.protocol.Serializer.ClassCodec
+cn.wjhub.netty.rpc.protocol.JsonSerializer <|.. cn.wjhub.netty.rpc.protocol.Serializer.ClassCodec
+cn.wjhub.netty.rpc.protocol.JsonDeserializer <|.. cn.wjhub.netty.rpc.protocol.Serializer.ClassCodec
+cn.wjhub.netty.chatroom.message.AbstractResponseMessage <|-- cn.wjhub.netty.chatroom.message.GroupChatResponseMessage
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.chatroom.server.handler.LoginRequestMessageHandler
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.chatroom.server.handler.GroupCreateRequestMessageHandler
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.GroupJoinRequestMessage
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.GroupMembersResponseMessage
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.rpc.handler.RpcRequestMessageHandler
+cn.wjhub.netty.chatroom.message.AbstractResponseMessage <|-- cn.wjhub.netty.chatroom.message.ChatResponseMessage
+io.netty.handler.codec.MessageToMessageCodec <|-- cn.wjhub.netty.rpc.protocol.MessageCodecSharable
+cn.wjhub.netty.chatroom.message.AbstractResponseMessage <|-- cn.wjhub.netty.chatroom.message.GroupCreateResponseMessage
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.GroupMembersRequestMessage
+cn.wjhub.netty.chatroom.message.AbstractResponseMessage <|-- cn.wjhub.netty.chatroom.message.LoginResponseMessage
+io.netty.handler.codec.MessageToMessageCodec <|-- cn.wjhub.netty.chatroom.protocol.MessageCodecSharable
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.rpc.message.RpcRequestMessage
+cn.wjhub.netty.chatroom.message.AbstractResponseMessage <|-- cn.wjhub.netty.chatroom.message.GroupQuitResponseMessage
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.chatroom.server.handler.GroupQuitRequestMessageHandler
+io.netty.handler.codec.ByteToMessageCodec <|-- cn.wjhub.netty.chatroom.protocol.MessageCodec
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.GroupChatRequestMessage
+io.netty.handler.codec.ByteToMessageCodec <|-- cn.wjhub.netty.compoent.protocol.MyMessageCodec
+cn.wjhub.netty.chatroom.server.session.Session <|.. cn.wjhub.netty.chatroom.server.session.SessionMemoryImpl
+java.io.Serializable <|.. cn.wjhub.netty.rpc.message.Message
+io.netty.channel.ChannelInboundHandlerAdapter <|-- cn.wjhub.netty.chatroom.server.handler.QuitRequestHandler
+cn.wjhub.netty.chatroom.server.session.GroupSession <|.. cn.wjhub.netty.chatroom.server.session.GroupSessionMemoryImpl
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.AbstractResponseMessage
+cn.wjhub.netty.chatroom.message.AbstractResponseMessage <|-- cn.wjhub.netty.chatroom.message.GroupJoinResponseMessage
+cn.wjhub.netty.rpc.message.Message <|-- cn.wjhub.netty.chatroom.message.ChatRequestMessage
+io.netty.handler.codec.LengthFieldBasedFrameDecoder <|-- cn.wjhub.netty.chatroom.protocol.ProcotolFrameDecoder
+io.netty.handler.codec.LengthFieldBasedFrameDecoder <|-- cn.wjhub.netty.rpc.protocol.ProtocolFrameDecoder
+io.netty.channel.SimpleChannelInboundHandler <|-- cn.wjhub.netty.chatroom.server.handler.GroupJoinRequestMessageMessageHandler
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+title 聚合
+class cn.zhanghub.designPattern.principle.UML.Tires {
+}
+class cn.zhanghub.designPattern.principle.UML.Car {
+    - Tires tires;
+    - CarEngine engine;
+}
+class cn.zhanghub.designPattern.principle.UML.CarEngine {
+}
+
+cn.zhanghub.designPattern.principle.UML.Car o--cn.zhanghub.designPattern.principle.UML.Tires
+cn.zhanghub.designPattern.principle.UML.Car o--cn.zhanghub.designPattern.principle.UML.CarEngine
+
+@enduml

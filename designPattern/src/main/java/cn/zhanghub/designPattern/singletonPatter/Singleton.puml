@@ -1,0 +1,36 @@
+@startuml
+title 单例模式
+note as N1
+1. 构造方法私有化
+2. 对外提供获取单例对象的方法
+3. 实例化单例对象
+end note
+
+class Singleton <<单例类>>
+class client  <<调用类>>
+
+class  Singleton {
+- {static} Singleton instance
+- <<Create>> Singleton()
++ {static} Singleton getInstance()
+}
+
+Singleton *--Singleton
+note "使用通过调用 getInstance()获取单例对象" as N3
+client ..N3
+N3 ..> Singleton::getInstance
+
+note as N2
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+end note
+Singleton::getInstance .. N2
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class cn.zhanghub.designPatterns.uml.classUML.PersonServiceBean {
+- PersonDao personDao
++ void save(Person)
++ IDCard getIDCard(Integer)
++ void modify()
+}
+class cn.zhanghub.designPatterns.uml.classUML.PersonDao {
+}
+class cn.zhanghub.designPatterns.uml.classUML.IDCard {
+}
+class cn.zhanghub.designPatterns.uml.classUML.Person {
+}
+class cn.zhanghub.designPatterns.uml.classUML.Department {
+}
+@enduml

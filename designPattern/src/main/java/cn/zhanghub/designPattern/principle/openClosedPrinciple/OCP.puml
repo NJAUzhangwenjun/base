@@ -1,0 +1,73 @@
+@startuml
+title 明星与经纪人的关系实例【迪米特法则】
+
+note as N1
+明星由于全身心投入艺术，所以许多日常事务
+由经纪人负责处理，如与粉丝的见面会，
+与媒体公司的业务洽淡等。这里的经纪人是
+明星的朋友，而粉丝和媒体公司是陌生人，
+所以适合使用迪米特法则
+end note
+
+note as N2
+    public void meeting() {
+        System.out.println(myFans.getName() + "与明星" + myStar.getName() + "见面了。");
+    }
+    public void business() {
+        System.out.println(myCompany.getName() + "与明星" + myStar.getName() + "洽淡业务。");
+    }
+end note
+'//经纪人
+class Agent {
+    - Star myStar;
+    - Fans myFans;
+    - Company myCompany;
+
+    + void setStar(Star myStar)
+
+    + void setFans(Fans myFans)
+
+    + void setCompany(Company myCompany)
+
+    + void meeting()
+
+    + void business()
+}
+
+N2 . Agent::business
+N2 -[hidden]->N1
+
+N1 ..Agent
+
+Agent --> Fans
+Agent --> Company
+Agent --> Star
+Star -[hidden]> Agent
+
+'//明星
+class Star {
+    - String name;
+
+    - Star(String name)
+
+    + String getName()
+}
+
+'//粉丝
+class Fans {
+    - String name;
+
+    - Fans(String name)
+
+    + String getName()
+}
+
+'//媒体公司
+class Company {
+    - String name;
+
+    - Company(String name)
+
+    + String getName()
+}
+@enduml

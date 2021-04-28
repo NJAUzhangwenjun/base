@@ -1,0 +1,21 @@
+@startuml
+title 组合关系【生命周期与主体相同】
+skinparam class {
+BackgroundColor PaleGreen
+ArrowColor SeaGreen
+BorderColor SpringGreen
+}
+skinparam stereotypeCBackgroundColor YellowGreen]
+
+class cn.zhanghub.designPattern.principle.UML.Tires {
+}
+class cn.zhanghub.designPattern.principle.UML.Car {
+- Tires tires = new Tires
+- CarEngine engine = new CarEngine
+}
+class cn.zhanghub.designPattern.principle.UML.CarEngine {
+}
+cn.zhanghub.designPattern.principle.UML.Car *--cn.zhanghub.designPattern.principle.UML.CarEngine
+cn.zhanghub.designPattern.principle.UML.Car *--cn.zhanghub.designPattern.principle.UML.Tires
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+title Person 接受消息的功能 【依赖倒转原则】
+'定义
+class Person
+Person : -personReceiveMessage:PersonReceiveMessage
+Person : +receiveMessage()
+
+interface PersonReceiveMessage<Person>
+PersonReceiveMessage : +receiveMessage()
+
+class PersonReceiveMessageImpl<Person>
+PersonReceiveMessageImpl : +receiveMessage()
+'关系
+PersonReceiveMessage <.. Person
+PersonReceiveMessage <|.. PersonReceiveMessageImpl
+'注释
+note as N1
+receiveMessage(){
+    personReceiveMessage.receiveMessage()
+}
+end note
+note as N2
+receiveMessage(){
+    return msg;
+}
+end note
+Person .. N1
+PersonReceiveMessageImpl .. N2
+
+@enduml
+
