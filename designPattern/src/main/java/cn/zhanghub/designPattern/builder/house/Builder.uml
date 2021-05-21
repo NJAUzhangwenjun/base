@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<components>
+	<component note="生成器模式">
+		
+		<class meta="x:60.0,y:120.0" name="Builder"/>
+		<class meta="x:400.0,y:100.0" name="Choice">
+			<operation name="Choice"/>
+		</class>
+		<aggregation type="ASSOCIATION" multiplicityKind="0-n" parentRole="builder"
+					 childRole="choice" child="Choice" parent="Builder"/>
+		<class meta="x:280.0,y:380.0" name="CheckBoxChoice">
+			<operation name="CheckBoxChoice"/>
+		</class>
+		<class meta="x:500.0,y:380.0" name="ListChoice">
+			<operation name="ListChoice"/>
+		</class>
+		<generalization parent="Choice" child="CheckBoxChoice"/>
+		<generalization parent="Choice" child="ListChoice"/>
+		<class name="cn.zhanghub.designPattern.builder.house.OrdinaryHouse" note="Class" meta="x:60.0,y:300.0">
+			<operation name="operation"/>
+		</class>
+	</component>
+</components>
+
+

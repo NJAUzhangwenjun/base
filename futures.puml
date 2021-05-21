@@ -1,9 +1,0 @@
-@startuml
-class cn.zhanghub.javaNewFeatures.java8.Functions {
-+ {static} void main(String[])
-+ {static} void createOrder(String)
-}
-interface cn.zhanghub.javaNewFeatures.java8.MyLambda {
-~ String getValue(String)
-}
-@enduml
