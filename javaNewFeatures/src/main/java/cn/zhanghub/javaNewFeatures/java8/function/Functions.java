@@ -1,4 +1,4 @@
-package cn.zhanghub.javaNewFeatures.java8;
+package cn.zhanghub.javaNewFeatures.java8.function;
 
 import java.util.Optional;
 import java.util.function.Function;

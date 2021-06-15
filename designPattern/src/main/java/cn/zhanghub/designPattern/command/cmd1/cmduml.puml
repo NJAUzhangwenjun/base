@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface Command{
++ void executor()
++ void undo()
+}
+
+class LightOnCommand implements Command{
+- Light light
++ void executor()
++ void undo()
+}
+
+class LightOffCommand implements Command{
+- Light light
++ void executor()
++ void undo()
+}
+
+class Light{
++ void on()
++ void off()
+}
+
+LightOffCommand o-->Light
+LightOnCommand o-->Light
+
+
+
+
+@enduml
